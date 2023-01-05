@@ -66,5 +66,9 @@ export class UserService {
     }
   };
 
-  public updateAccount = async (userId, accountId) => {};
+  public updateAccount = async (userId, accountId) => {
+    const user = await User.findOne({ id: userId });
+    user.address = accountId;
+    return await user.save();
+  };
 }

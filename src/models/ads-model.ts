@@ -31,9 +31,15 @@ const AdsSchema = new Schema<IAds>(
       enum: Object.values(AdsStatus),
       default: AdsStatus.ACTIVE,
     },
+    thumbnail: {
+      type: String,
+    },
     duration: {
       type: Number,
       required: true,
+    },
+    title: {
+      type: String,
     },
   },
   {

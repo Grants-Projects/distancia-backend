@@ -24,6 +24,8 @@ export class AdsService {
       interestId,
       description,
       duration,
+      thumbnail,
+      title,
     } = data;
     //TODO validate owner_id against the owner table or user table but we need to add a column for userType
 
@@ -34,6 +36,8 @@ export class AdsService {
       interestId,
       description,
       duration,
+      thumbnail,
+      title,
     });
 
     const ads = await adsEntity.save();
@@ -41,5 +45,10 @@ export class AdsService {
     if (ads) {
       return ads;
     }
+  };
+  public fetchAdsNotWatched = async (id: string, userId: string) => {
+    const user = await User.findOne({ _id: userId });
+    const result = await Ads.find({ _id: { $nin: user.viewedAds }, interestId: id });
+    return result;
   };
 }

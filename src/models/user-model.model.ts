@@ -30,6 +30,7 @@ const UserSchema = new Schema<IUserModel>(
     verifiedAt: Date,
     walkings: Number,
     username: String,
+    viewedAds: Array,
   },
   {
     timestamps: true,
