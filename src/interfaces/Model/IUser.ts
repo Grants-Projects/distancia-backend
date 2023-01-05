@@ -12,4 +12,5 @@ export interface IUser extends Document {
   walkings: number;
   verifiedAt: Date;
   username: string;
+  viewedAds: Array<any>;
 }

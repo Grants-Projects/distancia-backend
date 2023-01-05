@@ -57,6 +57,7 @@ class UserController {
         req.params.userId,
         req.body.accountId
       );
+      return res.status(StatusCodes.OK).json(response);
     } catch (err) {
       return HandleErrorResponse(err, res);
     }

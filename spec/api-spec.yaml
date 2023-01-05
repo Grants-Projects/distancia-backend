@@ -188,6 +188,26 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         'default':
           $ref: '#/components/responses/ServerError'
+  /ads/user/{userId}/interests/{interestId}:
+    get:
+      summary: 'fetch ads by interest'
+      operationId: fetchAdsByInterest
+      x-visibility: public
+      description: 'This endpoint fetches ads by interest'
+      tags:
+        - 'ads'
+      parameters:
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/interestId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AdsListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        'default':
+          $ref: '#/components/responses/ServerError'
 
 components:
   schemas:
@@ -270,6 +290,10 @@ components:
           type: 'string'
         duration:
           type: 'integer'
+        thumbnail:
+          type: 'string'
+        title:
+          type: 'string'
         createdAt:
           $ref: '#/components/schemas/Timestamp'
         updatedAt:
@@ -402,12 +426,12 @@ components:
           example: Verification otp has been sent to your email
 
     ErrorMessageDto:
-      $ref: 'https://api-spec-common.s3.amazonaws.com/common.yaml#/components/schemas/ErrorMessageDto'
+      $ref: './common.yaml#/components/schemas/ErrorMessageDto'
 
     StatusDto:
-      $ref: 'https://api-spec-common.s3.amazonaws.com/common.yaml#/components/schemas/StatusDto'
+      $ref: './common.yaml#/components/schemas/StatusDto'
     Timestamp:
-      $ref: 'https://resources.nestechops.com/openapi/common.yaml#/components/schemas/Timestamp'
+      $ref: './common.yaml#/components/schemas/Timestamp'
 
   parameters:
     accountId:
@@ -417,6 +441,20 @@ components:
         type: 'string'
       required: true
       description: 'User identifier in path'
+    userId:
+      in: 'path'
+      name: 'userId'
+      schema:
+        type: 'string'
+      required: true
+      description: 'User identifier in path'
+    interestId:
+      in: 'path'
+      name: 'interestId'
+      schema:
+        type: 'string'
+      required: true
+      description: 'interest identifier in path'
     # ENUM DEFINITIONS
   responses:
     StatusResponse:

@@ -12,4 +12,6 @@ export interface IAds extends Document {
   description: string;
   status: AdsStatus;
   duration: number;
+  thumbnail: string;
+  title: string;
 }

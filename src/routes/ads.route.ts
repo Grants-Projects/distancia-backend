@@ -9,5 +9,6 @@ const router = express.Router();
 //router.get('/', authMiddleware, adsController.fetchAds);
 router.get('/', adsController.fetchAds);
 router.post('/', adsController.createAd);
+router.get('/user/:userId/interests/:interestId', adsController.fetchAdsNotWatched);
 
 export default router;

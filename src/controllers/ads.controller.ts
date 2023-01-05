@@ -27,4 +27,17 @@ export default class AdsController {
       return HandleErrorResponse(err, res);
     }
   };
+
+  fetchAdsNotWatched = async (req: IRequest, res: IResponse) => {
+    try {
+      console.log('here');
+      let response = await this.adsService.fetchAdsNotWatched(
+        req.params.interestId,
+        req.params.userId
+      );
+      return res.status(StatusCodes.OK).json(response[0]);
+    } catch (err) {
+      return HandleErrorResponse(err, res);
+    }
+  };
 }
