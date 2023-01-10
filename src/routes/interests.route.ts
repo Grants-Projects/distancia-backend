@@ -7,5 +7,6 @@ const interestController: any = container.resolve(InterestController);
 const router = express.Router();
 router.get('/', interestController.fetchInterests);
 router.post('/', interestController.addInterests);
+router.put('/user/:userId/link-interest', interestController.linkUserInterest);
 
 export default router;

@@ -57,6 +57,7 @@ export class UserService {
         username: user.username,
         id: user._id,
         token: user.generateJWT(),
+        interests: user.interests,
       };
     } catch (error) {
       return res.forbidden(

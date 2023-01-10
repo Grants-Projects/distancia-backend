@@ -26,4 +26,20 @@ export default class InterestController {
       return HandleErrorResponse(err, res);
     }
   };
+
+  linkUserInterest = async (req: IRequest, res: IResponse) => {
+    try {
+      let response = await this.interestService.linkUserInterest(
+        req.params.userId,
+        req.body.interests
+      );
+
+      return res.status(StatusCodes.OK).json({
+        success: true,
+        message: 'Linked successfully',
+      });
+    } catch (err) {
+      return HandleErrorResponse(err, res);
+    }
+  };
 }
