@@ -31,6 +31,12 @@ const UserSchema = new Schema<IUserModel>(
     walkings: Number,
     username: String,
     viewedAds: Array,
+    interests: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Interest',
+      },
+    ],
   },
   {
     timestamps: true,

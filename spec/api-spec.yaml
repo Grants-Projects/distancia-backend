@@ -209,6 +209,35 @@ paths:
         'default':
           $ref: '#/components/responses/ServerError'
 
+  /interests/user/{userId}/link-interest:
+    put:
+      summary: 'Link user to interests'
+      operationId: linkUserInterests
+      x-visibility: public
+      description: 'This endpoint fetches ads by interest'
+      tags:
+        - 'interests'
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkInterest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        'default':
+          $ref: '#/components/responses/ServerError'
+
 components:
   schemas:
     # REQUEST OBJECT DEFINITIONS
@@ -262,6 +291,17 @@ components:
         type:
           type: string
           description: Type of activity
+
+    LinkInterest:
+      type: object
+      required:
+        - interests
+      properties:
+        interests:
+          type: array
+          items:
+            type: string
+          description: user interests
 
     # RESPONSE OBJECT DEFINITIONS
     InterestList:
@@ -360,6 +400,10 @@ components:
         token:
           type: string
           description: 'The token'
+        interests:
+          type: array
+          items:
+            type: string
 
     InterestDto:
       type: 'object'
